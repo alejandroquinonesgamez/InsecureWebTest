@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="600" viewBox="0 0 1600 600" role="img" aria-label="Placeholder Sierra de Aroche">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c7e7ff"/>
+      <stop offset="1" stop-color="#f7fbff"/>
+    </linearGradient>
+    <linearGradient id="hill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f6f4e"/>
+      <stop offset="1" stop-color="#1f4d36"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="600" fill="url(#sky)"/>
+  <path d="M0,420 C220,300 420,520 650,400 C880,280 1040,520 1240,420 C1380,350 1500,380 1600,340 L1600,600 L0,600 Z" fill="url(#hill)" opacity="0.95"/>
+  <path d="M0,470 C260,390 420,560 680,470 C940,380 1100,560 1400,460 C1490,430 1550,440 1600,420 L1600,600 L0,600 Z" fill="#173a2a" opacity="0.9"/>
+  <text x="50%" y="110" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="44" fill="#0f172a" opacity="0.9">
+    Sierra de Aroche
+  </text>
+  <text x="50%" y="165" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="20" fill="#334155" opacity="0.9">
+    (placeholder  sustituye este SVG por tu dibujo)
+  </text>
+</svg>
+

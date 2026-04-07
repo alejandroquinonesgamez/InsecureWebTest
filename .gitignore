@@ -1,0 +1,7 @@
+# Certificados generados localmente (NO subir claves privadas)
+certs/
+
+# Logs / temporales
+*.log
+.DS_Store
+

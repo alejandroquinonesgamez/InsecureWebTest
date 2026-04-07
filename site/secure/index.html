@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>secure — Login</title>
+    <link rel="stylesheet" href="/_shared/login.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="box">
+        <h1>secure — HTTPS bueno</h1>
+        <p>Login de laboratorio para generar tráfico. El formulario hace <code>POST /login</code>.</p>
+        <form method="post" action="/login" autocomplete="off">
+          <label>
+            Usuario
+            <input name="username" placeholder="usuario" />
+          </label>
+          <label>
+            Contraseña
+            <input name="password" type="password" placeholder="••••••••" />
+          </label>
+          <button type="submit">Entrar</button>
+        </form>
+        <div class="hint">
+          Consejo Wireshark: filtra por <code>tcp.port == 443</code> y revisa el handshake TLS/ciphers.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
