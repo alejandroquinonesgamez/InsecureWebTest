@@ -64,54 +64,129 @@
         /* Mantiene la proporción exacta de tu captura: 1024 x 506 */
         padding-top: 49.4140625%;
       }
-      .stage img {
+      .stage > img.bg {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
-      .hotspot {
+      .stage-title {
         position: absolute;
+        left: 50%;
+        top: 12%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: rgba(255,255,255,.96);
+        text-shadow: 0 10px 24px rgba(0,0,0,.55);
+        pointer-events: none;
+        padding: 0 16px;
+      }
+      .stage-title h1 {
+        margin: 0;
+        font-size: 42px;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+      }
+      .frames {
+        position: absolute;
+        left: 50%;
+        top: 32%;
+        transform: translateX(-50%);
+        width: min(92%, 980px);
+        display: flex;
+        justify-content: center;
+        gap: clamp(10px, 2.2vw, 18px);
+      }
+      .frame {
+        position: relative;
+        flex: 1 1 0;
+        max-width: 300px;
+        min-width: 200px;
         display: block;
-        border-radius: 12px;
-        outline: 0;
         text-decoration: none;
+        outline: 0;
+        transition: transform .12s ease, filter .12s ease, border-color .12s ease;
+        filter: drop-shadow(0 24px 45px rgba(0,0,0,.50));
+        border-radius: 14px;
+        border: 4px solid rgba(255,255,255,.78);
+        box-shadow: 0 0 0 1px rgba(0,0,0,.35) inset;
+        background: rgba(0,0,0,.20);
+        overflow: hidden;
       }
-      .hotspot:focus-visible,
-      .hotspot:hover {
-        box-shadow: 0 0 0 3px rgba(255,255,255,.55), 0 0 0 7px rgba(17, 24, 39, .45);
+      .frame img {
+        width: 100%;
+        height: auto;
+        display: block;
       }
-      .hotspot::after {
-        content: attr(data-label);
+      .frame:hover,
+      .frame:focus-visible {
+        transform: translateY(-2px) scale(1.01);
+        filter: drop-shadow(0 30px 65px rgba(0,0,0,.60));
+        border-color: rgba(255,255,255,.90);
+      }
+      .frame:focus-visible {
+        box-shadow: 0 0 0 3px rgba(255,255,255,.55), 0 0 0 7px rgba(17, 24, 39, .45), 0 0 0 1px rgba(0,0,0,.35) inset;
+      }
+      .frame .label {
         position: absolute;
-        left: 10px;
-        bottom: 10px;
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: .02em;
-        color: rgba(255,255,255,.95);
-        background: rgba(0,0,0,.45);
-        border: 1px solid rgba(255,255,255,.25);
+        left: 12px;
+        top: 12px;
         padding: 6px 10px;
         border-radius: 999px;
-        opacity: 0;
-        transform: translateY(6px);
-        transition: opacity .12s ease, transform .12s ease;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: .02em;
+        color: rgba(255,255,255,.96);
+        background: rgba(0,0,0,.45);
+        border: 1px solid rgba(255,255,255,.28);
+        backdrop-filter: blur(6px);
         pointer-events: none;
       }
-      .hotspot:hover::after,
-      .hotspot:focus-visible::after { opacity: 1; transform: translateY(0); }
-
-      /* Coordenadas en % (respecto a la imagen 1024x506). Ajustables si cambias la portada. */
-      .hs-castillo { left: 13.0%; top: 33.6%; width: 23.5%; height: 46.5%; }
-      .hs-cobertizo { left: 38.3%; top: 33.6%; width: 23.5%; height: 46.5%; }
-      .hs-cueva { left: 63.6%; top: 33.6%; width: 23.5%; height: 46.5%; }
+      .frame .caption {
+        display: block;
+        padding: 10px 12px 12px;
+        font-size: 14px;
+        font-weight: 900;
+        letter-spacing: .02em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,.94);
+        background: rgba(0,0,0,.30);
+        border-top: 1px solid rgba(255,255,255,.14);
+      }
 
       footer { margin-top: 16px; text-align: center; font-size: 12px; color: rgba(255,255,255,.82); }
       code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
       @media (max-width: 900px) {
         nav a { padding: 8px 8px; }
+      }
+      @media (max-width: 760px) {
+        .stage-title { top: 8%; }
+        .stage-title h1 { font-size: 30px; }
+        .stage {
+          overflow: visible;
+        }
+        .stage::before { display: none; }
+        .stage > img.bg {
+          position: static;
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+        .frames {
+          position: static;
+          transform: none;
+          width: 100%;
+          padding: 12px 12px 14px;
+          margin: -6px auto 0;
+          flex-direction: column;
+          align-items: center;
+        }
+        .frame {
+          width: min(78%, 340px);
+          max-width: none;
+          min-width: 0;
+        }
       }
     </style>
   </head>
@@ -132,11 +207,28 @@
         </header>
 
         <section id="labs" class="stage" aria-label="Portada con accesos a laboratorios">
-          <img src="/assets/portada.png" alt="Sierra de Aroche — portada" />
+          <img class="bg" src="/assets/portada-limpia.png" alt="Sierra de Aroche — portada" />
+          <div class="stage-title" aria-hidden="true">
+            <h1>Explora la Sierra de Aroche</h1>
+          </div>
 
-          <a class="hotspot hs-castillo" href="https://secure.localhost/" data-label="secure (HTTPS bueno)" aria-label="Abrir secure (HTTPS bueno)"></a>
-          <a class="hotspot hs-cobertizo" href="https://insecure.localhost/" data-label="insecure (HTTPS débil)" aria-label="Abrir insecure (HTTPS débil)"></a>
-          <a class="hotspot hs-cueva" href="http://daza-level-security.localhost/" data-label="HTTP (very-unsecure)" aria-label="Abrir HTTP (very-unsecure)"></a>
+          <div class="frames" aria-label="Accesos a laboratorios">
+            <a class="frame" href="https://secure.localhost/" aria-label="Abrir secure (HTTPS bueno)">
+              <span class="label">SECURE · HTTPS bueno</span>
+              <img src="/assets/frame-castillo.png" alt="El castillo de Aroche (secure)" />
+              <span class="caption">Secure</span>
+            </a>
+            <a class="frame" href="https://insecure.localhost/" aria-label="Abrir insecure (HTTPS débil)">
+              <span class="label">INSECURE · HTTPS débil</span>
+              <img src="/assets/frame-cobertizo.png" alt="Cobertizo antiguo (insecure)" />
+              <span class="caption">Insecure</span>
+            </a>
+            <a class="frame" href="http://daza-level-security.localhost/" aria-label="Abrir HTTP (very-unsecure)">
+              <span class="label">DAZA · HTTP en claro</span>
+              <img src="/assets/frame-cueva.png" alt="Entrada a una cueva (HTTP)" />
+              <span class="caption">Daza-Style</span>
+            </a>
+          </div>
         </section>
 
         <footer>
