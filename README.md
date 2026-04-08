@@ -26,6 +26,17 @@ Añade estas líneas a `/etc/hosts` (o a tu DNS local), apuntando a tu máquina:
 
 Si vas a acceder desde otra máquina, cambia `127.0.0.1` por la IP del host donde corre Docker.
 
+#### Alternativa sin tocar `/etc/hosts` (localhost)
+
+En muchos sistemas, los subdominios de `localhost` resuelven a loopback automáticamente, así que puedes usar:
+
+```text
+http://localhost/
+https://secure.localhost/
+https://insecure.localhost/
+http://daza-level-security.localhost/
+```
+
 ### 3) Generar certificados
 
 Desde esta carpeta:
@@ -55,6 +66,12 @@ Puertos:
 - Insecure (débil): `https://insecure.aroche.local/`
 - HTTP plano: `http://daza-level-security.aroche.local/`
 
+Alternativa sin hosts:
+- Portada: `http://localhost/`
+- Secure: `https://secure.localhost/`
+- Insecure (débil): `https://insecure.localhost/`
+- HTTP plano: `http://daza-level-security.localhost/`
+
 ### 6) Captura con Wireshark
 
 - Si navegas desde **este mismo host**, captura en la interfaz **loopback** (`lo`) o en la interfaz de salida según tu setup.
@@ -66,9 +83,9 @@ En **HTTP** verás el `POST` y credenciales en claro. En **HTTPS** verás handsh
 
 ### 7) Portada / imagen Sierra de Aroche
 
-Pon tu imagen en:
+La portada actual usa tu imagen en:
 
-- `site/main/assets/hero.png`
+- `site/main/assets/portada.png`
 
-Y refresca. (Hay un placeholder por defecto.)
+Si cambias la imagen por otra con diferente tamaño/encuadre, ajusta los recortes CSS en `site/main/index.html` (clases `.thumb.castillo`, `.thumb.cobertizo`, `.thumb.cueva`).
 

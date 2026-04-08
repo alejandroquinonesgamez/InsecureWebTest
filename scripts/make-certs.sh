@@ -12,7 +12,7 @@ make_secure() {
     -keyout "$CERTS_DIR/secure/secure.key" \
     -out "$CERTS_DIR/secure/secure.crt" \
     -subj "/C=ES/ST=Huelva/L=Aroche/O=nginx-labs/CN=secure.aroche.local" \
-    -addext "subjectAltName=DNS:secure.aroche.local,DNS:aroche.local"
+    -addext "subjectAltName=DNS:secure.aroche.local,DNS:aroche.local,DNS:secure.localhost,DNS:localhost,IP:127.0.0.1"
 }
 
 make_insecure() {
@@ -22,7 +22,7 @@ make_insecure() {
     -keyout "$CERTS_DIR/insecure/insecure.key" \
     -out "$CERTS_DIR/insecure/insecure.crt" \
     -subj "/C=ES/ST=Huelva/L=Aroche/O=nginx-labs/CN=insecure.aroche.local" \
-    -addext "subjectAltName=DNS:insecure.aroche.local"
+    -addext "subjectAltName=DNS:insecure.aroche.local,DNS:insecure.localhost"
 }
 
 if [ ! -f "$CERTS_DIR/secure/secure.crt" ] || [ ! -f "$CERTS_DIR/secure/secure.key" ]; then

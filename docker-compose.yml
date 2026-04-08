@@ -4,6 +4,7 @@ services:
     container_name: aroche-nginx
     depends_on:
       - httpbin
+      - auth
     ports:
       - "80:80"
       - "443:443"
@@ -17,5 +18,11 @@ services:
   httpbin:
     image: kennethreitz/httpbin:latest
     container_name: aroche-httpbin
+    restart: unless-stopped
+
+  auth:
+    build:
+      context: ./services/auth
+    container_name: aroche-auth
     restart: unless-stopped
 
