@@ -6,7 +6,11 @@ Laboratorio estilo **badssl** con 3 subdominios:
 - **insecure**: HTTPS “muy débil” (ciphers débiles + `@SECLEVEL=0`)
 - **daza-level-security**: HTTP (sin TLS)
 
-Cada subdominio muestra un **login** que hace un `POST` real a un backend (`httpbin`) para que puedas capturar tráfico con Wireshark.
+Cada subdominio muestra un **login** que hace `POST /login` contra un servicio `auth` (en otro contenedor) para que puedas capturar tráfico con Wireshark y además ver un mensaje de **login correcto/incorrecto**.
+
+Credenciales demo:
+- Usuario: `Manuel`
+- Contraseña: `SierraArocheLove88`
 
 ### 1) Requisitos
 
@@ -55,6 +59,21 @@ Genera:
 docker compose up -d --build
 ```
 
+#### Arranque recomendado (evita conflictos)
+
+Este script genera/actualiza `.env` (credenciales demo), limpia contenedores huérfanos y levanta todo:
+
+```bash
+./scripts/run.sh
+```
+
+Opciones:
+
+```bash
+./scripts/run.sh --user Manuel --pass SierraArocheLove88
+./scripts/run.sh --regen-certs
+```
+
 Puertos:
 - HTTP: `80`
 - HTTPS: `443`
@@ -83,9 +102,13 @@ En **HTTP** verás el `POST` y credenciales en claro. En **HTTPS** verás handsh
 
 ### 7) Portada / imagen Sierra de Aroche
 
-La portada actual usa tu imagen en:
+La portada actual usa:
 
-- `site/main/assets/portada.png`
+- Fondo “limpio”: `site/main/assets/portada-limpia.png`
+- Frames individuales:
+  - `site/main/assets/frame-castillo.png`
+  - `site/main/assets/frame-cobertizo.png`
+  - `site/main/assets/frame-cueva.png`
 
-Si cambias la imagen por otra con diferente tamaño/encuadre, ajusta los recortes CSS en `site/main/index.html` (clases `.thumb.castillo`, `.thumb.cobertizo`, `.thumb.cueva`).
+Si cambias estas imágenes por otras con diferentes tamaños, ajusta el layout en `site/main/index.html` (bloques `.stage`, `.frames` y `.frame`).
 

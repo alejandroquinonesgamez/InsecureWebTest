@@ -1,6 +1,9 @@
 # Certificados generados localmente (NO subir claves privadas)
 certs/
 
+# Variables locales (credenciales demo, etc.)
+.env
+
 # Logs / temporales
 *.log
 .DS_Store

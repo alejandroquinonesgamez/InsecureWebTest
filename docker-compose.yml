@@ -1,7 +1,6 @@
 services:
   nginx:
     image: nginx:1.27-alpine
-    container_name: aroche-nginx
     depends_on:
       - httpbin
       - auth
@@ -17,12 +16,13 @@ services:
 
   httpbin:
     image: kennethreitz/httpbin:latest
-    container_name: aroche-httpbin
     restart: unless-stopped
 
   auth:
     build:
       context: ./services/auth
-    container_name: aroche-auth
+    environment:
+      - AUTH_USER=${AUTH_USER:-Manuel}
+      - AUTH_PASS=${AUTH_PASS:-SierraArocheLove88}
     restart: unless-stopped
 
