@@ -16,9 +16,9 @@ make_secure() {
 }
 
 make_insecure() {
-  echo "[*] Generando certificado INSECURE (RSA 1024)..."
+  echo "[*] Generando certificado INSECURE (RSA 512)..."
   # Nota: RSA 1024 es deliberadamente débil. OpenSSL puede advertir, pero lo generará.
-  openssl req -x509 -newkey rsa:1024 -sha256 -days 3650 -nodes \
+  openssl req -x509 -newkey rsa:512 -sha256 -days 3650 -nodes \
     -keyout "$CERTS_DIR/insecure/insecure.key" \
     -out "$CERTS_DIR/insecure/insecure.crt" \
     -subj "/C=ES/ST=Huelva/L=Aroche/O=nginx-labs/CN=insecure.aroche.local" \
