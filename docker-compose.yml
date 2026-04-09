@@ -12,11 +12,11 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./site:/var/www:ro
       - ./certs:/etc/nginx/certs:ro
-    restart: unless-stopped
+    restart: no
 
   httpbin:
     image: kennethreitz/httpbin:latest
-    restart: unless-stopped
+    restart: no
 
   auth:
     build:
@@ -24,5 +24,5 @@ services:
     environment:
       - AUTH_USER=${AUTH_USER:-Manuel}
       - AUTH_PASS=${AUTH_PASS:-SierraArocheLove88}
-    restart: unless-stopped
+    restart: no
 
